@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stay Tuned — Gizlilik Politikası / Privacy Policy</title>
+<style>
+  :root{
+    --beam:#FBD737; --beam-deep:#B8860B; --ink:#141414; --paper:#fbfaf6;
+    --bg:var(--paper); --surface:#ffffff; --text:#1c1b18; --muted:#6b6a63; --line:#e9e5da; --accent:#B8860B;
+  }
+  @media (prefers-color-scheme: dark){:root{--bg:#0d0e12;--surface:#15161c;--text:#eceae2;--muted:#9a988c;--line:#262832;--accent:#FBD737;}}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);line-height:1.65;
+    font-family:'Charter','Georgia',serif;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:720px;margin:0 auto;padding:48px 22px 96px;}
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:8px;flex-wrap:wrap;}
+  .brand{font-family:-apple-system,system-ui,sans-serif;font-weight:800;letter-spacing:-0.02em;color:var(--accent);font-size:18px;text-decoration:none;}
+  .toggle{font-family:ui-monospace,monospace;font-size:12px;display:flex;gap:2px;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .toggle button{font:inherit;border:0;background:transparent;color:var(--muted);padding:6px 12px;cursor:pointer;}
+  .toggle button[aria-pressed="true"]{background:var(--accent);color:#141414;font-weight:700;}
+  h1{font-family:-apple-system,system-ui,sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:clamp(28px,5vw,38px);margin:24px 0 4px;line-height:1.1;}
+  .updated{font-family:ui-monospace,monospace;font-size:12px;color:var(--muted);margin:0 0 32px;}
+  h2{font-family:-apple-system,system-ui,sans-serif;font-weight:700;letter-spacing:-0.01em;font-size:20px;margin:36px 0 10px;padding-top:20px;border-top:1px solid var(--line);}
+  p,li{font-size:16.5px;}
+  a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;}
+  ul{padding-left:22px;}
+  li{margin:6px 0;}
+  strong{font-weight:700;}
+  .lang{display:none;}
+  .lang.on{display:block;}
+  code{font-family:ui-monospace,monospace;font-size:0.9em;background:var(--surface);padding:1px 5px;border-radius:4px;border:1px solid var(--line);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="/">📺 Stay Tuned</a>
+    <div class="toggle" role="group" aria-label="Language">
+      <button id="btn-tr" aria-pressed="true" onclick="setLang('tr')">Türkçe</button>
+      <button id="btn-en" aria-pressed="false" onclick="setLang('en')">English</button>
+    </div>
+  </div>
+
+  <!-- TÜRKÇE -->
+  <div class="lang on" id="tr">
+    <h1>Gizlilik Politikası</h1>
+    <p class="updated">Son güncelleme: 18 Temmuz 2026</p>
+
+    <p>Stay Tuned ("uygulama", "biz"), izlediğin dizi ve filmleri takip etmene, keşfetmene ve diğer kullanıcılarla paylaşmana yarayan bir uygulamadır. Bu politika, hangi verileri topladığımızı, neden topladığımızı ve haklarını açıklar.</p>
+
+    <h2>Topladığımız veriler</h2>
+    <ul>
+      <li><strong>Hesap bilgileri:</strong> e-posta adresi, kullanıcı adı, takma ad, (varsa) profil ve kapak fotoğrafı.</li>
+      <li><strong>İsteğe bağlı profil bilgileri:</strong> doğum yılı, cinsiyet, ülke/bölge — önerileri kişiselleştirmek için; vermemeyi seçebilirsin.</li>
+      <li><strong>İzleme etkinliğin:</strong> izlediğin bölüm/filmler ve tarihleri, takip ettiğin diziler, puanların, favorilerin, listelerin.</li>
+      <li><strong>Sosyal içerik:</strong> yorumların, duygu/karakter oyların, beğenilerin, takip/engelleme ilişkilerin, katıldığın gruplar ve kulüpler.</li>
+      <li><strong>Bildirim verileri:</strong> izin verirsen cihaz push token'ı ve bildirim tercihlerin.</li>
+      <li><strong>Uygulama tercihleri:</strong> tema, dil, spoiler ayarları, streaming servislerin, kanal filtren.</li>
+      <li><strong>Teknik veriler:</strong> cihaz adı (push için), temel hata/çökme kayıtları.</li>
+    </ul>
+
+    <h2>Verileri neden kullanıyoruz</h2>
+    <ul>
+      <li>Takip, keşif ve sosyal özellikleri sunmak.</li>
+      <li>Sana özel öneriler ve istatistikler üretmek.</li>
+      <li>Yeni bölüm ve etkinlik bildirimleri göndermek.</li>
+      <li>Hizmeti güvenli tutmak ve kötüye kullanımı önlemek.</li>
+    </ul>
+
+    <h2>Üçüncü taraflar</h2>
+    <ul>
+      <li><strong>Supabase</strong> — verilerin barındırıldığı ve kimlik doğrulamanın yapıldığı altyapı sağlayıcımız.</li>
+      <li><strong>TMDB (The Movie Database)</strong> — dizi/film verileri buradan gelir. Arama sorgusu ve içerik kimlikleri gönderilir; <strong>kişisel bilgilerin TMDB ile paylaşılmaz</strong>.</li>
+      <li><strong>Expo / Apple / Google</strong> — push bildirimlerini iletmek için (Expo Push → APNs/FCM).</li>
+      <li><strong>Google</strong> — yalnızca "Google ile giriş"i kullanırsan, kimlik doğrulama için.</li>
+      <li><strong>AI özet sağlayıcısı</strong> — "Previously on" özet özelliğini kullanırsan, izlediğin bölümlerin özetini üretmek üzere bölüm açıklamaları gönderilir (kişisel kimlik bilgisi gönderilmez).</li>
+    </ul>
+    <p><strong>Verilerini satmayız.</strong> Kişisel profilini reklam amacıyla üçüncü taraflara pazarlamayız.</p>
+
+    <h2>Haklarını nasıl kullanırsın</h2>
+    <ul>
+      <li><strong>Erişim / dışa aktarma:</strong> Ayarlar → Verilerimi Dışa Aktar ile tüm verini indir.</li>
+      <li><strong>Silme:</strong> Ayarlar → Hesap → Hesabımı Sil. Bu işlem geri alınamaz; tüm verin kalıcı olarak silinir.</li>
+      <li><strong>Düzeltme:</strong> profil ve ayarlarını uygulama içinden değiştirebilirsin.</li>
+    </ul>
+
+    <h2>Veri saklama</h2>
+    <p>Verilerini hesabın aktif olduğu sürece saklarız. Hesabını sildiğinde verilerin kalıcı olarak silinir.</p>
+
+    <h2>Çocuklar</h2>
+    <p>Uygulama 13 yaşından küçüklere yönelik değildir. 13 yaşından küçük olduğunu düşündüğümüz hesapları kapatabiliriz.</p>
+
+    <h2>Değişiklikler</h2>
+    <p>Bu politikayı zaman zaman güncelleyebiliriz; önemli değişiklikleri uygulama içinde duyururuz.</p>
+
+    <h2>İletişim</h2>
+    <p>Sorular için: <a href="mailto:getstaytuned@gmail.com">getstaytuned@gmail.com</a></p>
+  </div>
+
+  <!-- ENGLISH -->
+  <div class="lang" id="en">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: July 18, 2026</p>
+
+    <p>Stay Tuned ("the app", "we") helps you track, discover and share the TV shows and movies you watch. This policy explains what data we collect, why, and your rights.</p>
+
+    <h2>Data we collect</h2>
+    <ul>
+      <li><strong>Account info:</strong> email address, username, nickname, and optional profile/cover photo.</li>
+      <li><strong>Optional profile info:</strong> birth year, gender, country/region — used to personalize recommendations; you may leave these blank.</li>
+      <li><strong>Your viewing activity:</strong> episodes/movies you watch and when, shows you track, your ratings, favorites and lists.</li>
+      <li><strong>Social content:</strong> your comments, emotion/character votes, likes, follow/block relationships, groups and clubs you join.</li>
+      <li><strong>Notification data:</strong> if you allow it, your device push token and notification preferences.</li>
+      <li><strong>App preferences:</strong> theme, language, spoiler settings, your streaming services, network filters.</li>
+      <li><strong>Technical data:</strong> device name (for push), basic error/crash logs.</li>
+    </ul>
+
+    <h2>Why we use it</h2>
+    <ul>
+      <li>To provide tracking, discovery and social features.</li>
+      <li>To generate personalized recommendations and stats.</li>
+      <li>To send new-episode and activity notifications.</li>
+      <li>To keep the service secure and prevent abuse.</li>
+    </ul>
+
+    <h2>Third parties</h2>
+    <ul>
+      <li><strong>Supabase</strong> — our backend provider that hosts your data and handles authentication.</li>
+      <li><strong>TMDB (The Movie Database)</strong> — source of show/movie data. Search queries and content IDs are sent; <strong>your personal data is not shared with TMDB</strong>.</li>
+      <li><strong>Expo / Apple / Google</strong> — to deliver push notifications (Expo Push → APNs/FCM).</li>
+      <li><strong>Google</strong> — only if you use "Sign in with Google", for authentication.</li>
+      <li><strong>AI summary provider</strong> — if you use the "Previously on" recap feature, episode descriptions are sent to generate a recap (no personal identifiers are sent).</li>
+    </ul>
+    <p><strong>We do not sell your data</strong> or market your personal profile to advertisers.</p>
+
+    <h2>Your rights</h2>
+    <ul>
+      <li><strong>Access / export:</strong> download all your data via Settings → Export My Data.</li>
+      <li><strong>Deletion:</strong> Settings → Account → Delete My Account. This is irreversible and permanently deletes your data.</li>
+      <li><strong>Correction:</strong> edit your profile and settings inside the app.</li>
+    </ul>
+
+    <h2>Data retention</h2>
+    <p>We keep your data while your account is active. When you delete your account, your data is permanently deleted.</p>
+
+    <h2>Children</h2>
+    <p>The app is not directed to children under 13. We may close accounts we believe belong to someone under 13.</p>
+
+    <h2>Changes</h2>
+    <p>We may update this policy from time to time and will announce material changes in the app.</p>
+
+    <h2>Contact</h2>
+    <p>Questions: <a href="mailto:getstaytuned@gmail.com">getstaytuned@gmail.com</a></p>
+  </div>
+</div>
+
+<script>
+  function setLang(l){
+    document.getElementById('tr').classList.toggle('on', l==='tr');
+    document.getElementById('en').classList.toggle('on', l==='en');
+    document.getElementById('btn-tr').setAttribute('aria-pressed', l==='tr');
+    document.getElementById('btn-en').setAttribute('aria-pressed', l==='en');
+  }
+  if((navigator.language||'').toLowerCase().startsWith('en')) setLang('en');
+</script>
+</body>
+</html>

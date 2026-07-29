@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stay Tuned — Kullanım Koşulları / Terms of Service</title>
+<style>
+  :root{
+    --beam:#FBD737; --beam-deep:#B8860B;
+    --bg:#fbfaf6; --surface:#ffffff; --text:#1c1b18; --muted:#6b6a63; --line:#e9e5da; --accent:#B8860B;
+  }
+  @media (prefers-color-scheme: dark){:root{--bg:#0d0e12;--surface:#15161c;--text:#eceae2;--muted:#9a988c;--line:#262832;--accent:#FBD737;}}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);line-height:1.65;
+    font-family:'Charter','Georgia',serif;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:720px;margin:0 auto;padding:48px 22px 96px;}
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:8px;flex-wrap:wrap;}
+  .brand{font-family:-apple-system,system-ui,sans-serif;font-weight:800;letter-spacing:-0.02em;color:var(--accent);font-size:18px;text-decoration:none;}
+  .toggle{font-family:ui-monospace,monospace;font-size:12px;display:flex;gap:2px;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .toggle button{font:inherit;border:0;background:transparent;color:var(--muted);padding:6px 12px;cursor:pointer;}
+  .toggle button[aria-pressed="true"]{background:var(--accent);color:#141414;font-weight:700;}
+  h1{font-family:-apple-system,system-ui,sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:clamp(28px,5vw,38px);margin:24px 0 4px;line-height:1.1;}
+  .updated{font-family:ui-monospace,monospace;font-size:12px;color:var(--muted);margin:0 0 32px;}
+  h2{font-family:-apple-system,system-ui,sans-serif;font-weight:700;letter-spacing:-0.01em;font-size:20px;margin:36px 0 10px;padding-top:20px;border-top:1px solid var(--line);}
+  p,li{font-size:16.5px;}
+  a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;}
+  ul{padding-left:22px;}
+  li{margin:6px 0;}
+  strong{font-weight:700;}
+  .lang{display:none;}
+  .lang.on{display:block;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="/">📺 Stay Tuned</a>
+    <div class="toggle" role="group" aria-label="Language">
+      <button id="btn-tr" aria-pressed="true" onclick="setLang('tr')">Türkçe</button>
+      <button id="btn-en" aria-pressed="false" onclick="setLang('en')">English</button>
+    </div>
+  </div>
+
+  <!-- TÜRKÇE -->
+  <div class="lang on" id="tr">
+    <h1>Kullanım Koşulları</h1>
+    <p class="updated">Son güncelleme: 18 Temmuz 2026</p>
+
+    <p>Stay Tuned'ı ("uygulama") kullanarak bu koşulları kabul etmiş olursun. Lütfen dikkatle oku.</p>
+
+    <h2>1. Kimler kullanabilir</h2>
+    <p>En az 13 yaşında olmalısın. Bir hesap oluşturarak verdiğin bilgilerin doğru olduğunu ve hesabının güvenliğinden kendinin sorumlu olduğunu kabul edersin.</p>
+
+    <h2>2. Hizmet</h2>
+    <p>Stay Tuned; dizi/film takibi, keşfi ve sosyal etkileşim sağlar. Hizmeti dilediğimiz zaman değiştirebilir, askıya alabilir veya sonlandırabiliriz.</p>
+
+    <h2>3. Senin içeriğin</h2>
+    <ul>
+      <li>Yorumların, listelerin, incelemelerin ve profil bilgilerin sana aittir.</li>
+      <li>Bunları paylaşarak, hizmeti sunabilmemiz için (görüntüleme, çoğaltma, dağıtma) sınırlı ve dünya çapında bir lisans vermiş olursun. İçeriğini istediğin zaman silebilirsin.</li>
+      <li>Yasa dışı, telif ihlali içeren veya başkasının haklarını çiğneyen içerik paylaşmamayı kabul edersin.</li>
+    </ul>
+
+    <h2>4. Topluluk kuralları</h2>
+    <p>Şunlar yasaktır:</p>
+    <ul>
+      <li>Taciz, nefret söylemi, tehdit veya zorbalık.</li>
+      <li>İşaretlenmemiş spoiler'larla kasıtlı olarak deneyimi bozmak.</li>
+      <li>Spam, dolandırıcılık, kimlik taklidi veya sahte hesaplar.</li>
+      <li>Uygulamayı otomatik araçlarla kötüye kullanmak veya güvenliği aşmaya çalışmak.</li>
+    </ul>
+    <p>Bu kurallara uymayan içeriği kaldırabilir, hesapları askıya alabiliriz.</p>
+
+    <h2>5. Üçüncü taraf içerik (TMDB)</h2>
+    <p>Dizi/film bilgileri TMDB (The Movie Database) API'sinden gelir. Bu ürün TMDB API'sini kullanır ancak TMDB tarafından onaylanmış veya sertifikalandırılmış değildir. İçeriğin doğruluğundan TMDB ve ilgili kaynaklar sorumludur.</p>
+
+    <h2>6. Garanti reddi</h2>
+    <p>Uygulama "olduğu gibi" sunulur. Kesintisiz, hatasız veya belirli bir amaca uygun olacağına dair garanti vermeyiz.</p>
+
+    <h2>7. Sorumluluğun sınırı</h2>
+    <p>Yürürlükteki yasaların izin verdiği ölçüde, uygulamayı kullanmandan doğan dolaylı veya sonuçsal zararlardan sorumlu değiliz.</p>
+
+    <h2>8. Fesih</h2>
+    <p>Bu koşulları ihlal edersen hesabını askıya alabilir veya kapatabiliriz. Sen de dilediğin an Ayarlar'dan hesabını silebilirsin.</p>
+
+    <h2>9. Değişiklikler</h2>
+    <p>Bu koşulları güncelleyebiliriz; önemli değişiklikleri uygulama içinde duyururuz. Değişiklikten sonra kullanmaya devam etmen, yeni koşulları kabul ettiğin anlamına gelir.</p>
+
+    <h2>10. İletişim</h2>
+    <p>Sorular için: <a href="mailto:getstaytuned@gmail.com">getstaytuned@gmail.com</a></p>
+  </div>
+
+  <!-- ENGLISH -->
+  <div class="lang" id="en">
+    <h1>Terms of Service</h1>
+    <p class="updated">Last updated: July 18, 2026</p>
+
+    <p>By using Stay Tuned ("the app") you agree to these terms. Please read them carefully.</p>
+
+    <h2>1. Who can use it</h2>
+    <p>You must be at least 13 years old. By creating an account you confirm the information you provide is accurate and that you are responsible for your account's security.</p>
+
+    <h2>2. The service</h2>
+    <p>Stay Tuned lets you track and discover TV shows and movies and interact socially. We may change, suspend or discontinue the service at any time.</p>
+
+    <h2>3. Your content</h2>
+    <ul>
+      <li>Your comments, lists, reviews and profile information belong to you.</li>
+      <li>By posting them, you grant us a limited, worldwide license (to display, reproduce and distribute) solely so we can operate the service. You can delete your content at any time.</li>
+      <li>You agree not to post content that is illegal, infringes copyright, or violates others' rights.</li>
+    </ul>
+
+    <h2>4. Community rules</h2>
+    <p>The following are prohibited:</p>
+    <ul>
+      <li>Harassment, hate speech, threats or bullying.</li>
+      <li>Deliberately spoiling others' experience with unmarked spoilers.</li>
+      <li>Spam, fraud, impersonation or fake accounts.</li>
+      <li>Abusing the app with automated tools or attempting to breach security.</li>
+    </ul>
+    <p>We may remove content and suspend accounts that break these rules.</p>
+
+    <h2>5. Third-party content (TMDB)</h2>
+    <p>Show/movie data comes from the TMDB (The Movie Database) API. This product uses the TMDB API but is not endorsed or certified by TMDB. TMDB and its sources are responsible for the accuracy of that content.</p>
+
+    <h2>6. Disclaimer of warranties</h2>
+    <p>The app is provided "as is". We do not warrant that it will be uninterrupted, error-free, or fit for a particular purpose.</p>
+
+    <h2>7. Limitation of liability</h2>
+    <p>To the extent permitted by applicable law, we are not liable for indirect or consequential damages arising from your use of the app.</p>
+
+    <h2>8. Termination</h2>
+    <p>We may suspend or close your account if you violate these terms. You may delete your account at any time from Settings.</p>
+
+    <h2>9. Changes</h2>
+    <p>We may update these terms and will announce material changes in the app. Continuing to use the app after a change means you accept the new terms.</p>
+
+    <h2>10. Contact</h2>
+    <p>Questions: <a href="mailto:getstaytuned@gmail.com">getstaytuned@gmail.com</a></p>
+  </div>
+</div>
+
+<script>
+  function setLang(l){
+    document.getElementById('tr').classList.toggle('on', l==='tr');
+    document.getElementById('en').classList.toggle('on', l==='en');
+    document.getElementById('btn-tr').setAttribute('aria-pressed', l==='tr');
+    document.getElementById('btn-en').setAttribute('aria-pressed', l==='en');
+  }
+  if((navigator.language||'').toLowerCase().startsWith('en')) setLang('en');
+</script>
+</body>
+</html>

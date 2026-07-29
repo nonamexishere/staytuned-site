@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stay Tuned — Dizi & Film Takip / TV & Movie Tracker</title>
+<meta name="description" content="İzlediğin her dizi ve filmi takip et, keşfet, arkadaşlarınla tartış. Track everything you watch.">
+<style>
+  :root{
+    --beam:#FBD737; --bg:#fbfaf6; --surface:#ffffff; --text:#1c1b18; --muted:#6b6a63; --line:#e9e5da; --accent:#B8860B;
+  }
+  @media (prefers-color-scheme: dark){:root{--bg:#0d0e12;--surface:#15161c;--text:#eceae2;--muted:#9a988c;--line:#262832;--accent:#FBD737;}}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);line-height:1.65;
+    font-family:'Charter','Georgia',serif;-webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;flex-direction:column;}
+  .wrap{max-width:720px;margin:0 auto;padding:64px 22px 48px;flex:1;
+    display:flex;flex-direction:column;justify-content:center;text-align:center;}
+  .logo{font-size:56px;line-height:1;}
+  h1{font-family:-apple-system,system-ui,sans-serif;font-weight:800;letter-spacing:-0.02em;
+    font-size:clamp(34px,7vw,52px);margin:16px 0 8px;color:var(--accent);}
+  .tag{font-size:19px;color:var(--muted);margin:0 0 8px;}
+  .tag-en{font-size:15px;color:var(--muted);margin:0 0 36px;font-style:italic;}
+  .store{display:inline-block;font-family:-apple-system,system-ui,sans-serif;font-weight:700;
+    background:var(--beam);color:#141414;border-radius:14px;padding:14px 28px;font-size:16px;
+    text-decoration:none;}
+  .store:hover{filter:brightness(1.05);}
+  .soon{display:block;margin-top:12px;font-size:13px;color:var(--muted);
+    font-family:ui-monospace,monospace;}
+  footer{border-top:1px solid var(--line);padding:20px 22px 28px;text-align:center;
+    font-family:-apple-system,system-ui,sans-serif;font-size:13.5px;color:var(--muted);}
+  footer a{color:var(--accent);text-decoration:none;margin:0 10px;}
+  footer a:hover{text-decoration:underline;}
+  .tmdb{margin-top:10px;font-size:11.5px;}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="logo">📺</div>
+    <h1>Stay Tuned</h1>
+    <p class="tag">İzlediğin her dizi ve filmi takip et, keşfet, arkadaşlarınla tartış.</p>
+    <p class="tag-en">Track everything you watch. Join the TV &amp; movie community.</p>
+    <p>
+      <a class="store" href="https://apps.apple.com/app/id6792608115">App Store'dan indir · Download on the App Store</a>
+      <span class="soon">Android — yakında / coming soon</span>
+    </p>
+  </div>
+  <footer>
+    <div>
+      <a href="/privacy/">Gizlilik · Privacy</a>
+      <a href="/terms/">Koşullar · Terms</a>
+      <a href="mailto:getstaytuned@gmail.com">İletişim · Contact</a>
+    </div>
+    <div class="tmdb">This product uses the TMDB API but is not endorsed or certified by TMDB.</div>
+  </footer>
+</body>
+</html>
