@@ -12,6 +12,8 @@
   :root{
     --beam:#FBD737; --beam-deep:#B8860B;
     --bg:#0d0e12; --surface:#15161c; --card:#191b23; --text:#eceae2; --muted:#9a988c; --line:#262832;
+    --ease:cubic-bezier(.16,1,.3,1);
+    --s2:16px; --s3:24px; --s4:40px; --s5:64px; --s6:96px;
   }
   *{box-sizing:border-box;margin:0;}
   html{scroll-behavior:smooth;}
@@ -19,126 +21,163 @@
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
     -webkit-font-smoothing:antialiased;overflow-x:hidden;}
   a{color:var(--beam);text-decoration:none;}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  ::selection{background:var(--beam);color:#141414;}
+  .wrap{max-width:1080px;margin:0 auto;padding-inline:clamp(20px,4vw,32px);}
+  h1,h2,h3{text-wrap:balance;}
+
+  /* Reveal-on-scroll */
+  .rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0ms);}
+  .rv.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    .rv{opacity:1;transform:none;transition:none;}
+    .phone-wrap{animation:none!important;}
+    html{scroll-behavior:auto;}
+  }
 
   /* Nav */
-  nav{position:sticky;top:0;z-index:10;background:rgba(13,14,18,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
-  .nav-in{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
+  nav{position:sticky;top:0;z-index:10;background:rgba(13,14,18,.82);backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;transition:border-color .4s,box-shadow .4s;}
+  nav.scrolled{border-color:var(--line);box-shadow:0 8px 30px rgba(0,0,0,.35);}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;padding-block:14px;}
   .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:var(--beam);letter-spacing:-.02em;}
   .brand img{width:28px;height:28px;border-radius:7px;}
-  .nav-cta{background:var(--beam);color:#141414;font-weight:700;font-size:14px;padding:9px 18px;border-radius:999px;}
-  .nav-cta:hover{filter:brightness(1.07);}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--beam);color:#141414;
+    font-weight:800;border-radius:999px;transition:transform .25s var(--ease),box-shadow .25s var(--ease),filter .2s;
+    will-change:transform;}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(251,215,55,.22);filter:brightness(1.05);}
+  .btn:active{transform:translateY(0);}
+  .btn:focus-visible{outline:2px solid var(--beam);outline-offset:3px;}
+  .nav-cta{font-size:14px;padding:9px 18px;}
 
   /* Hero */
-  .hero{display:flex;align-items:center;gap:48px;padding:72px 0 48px;}
+  .hero{position:relative;display:flex;align-items:center;gap:clamp(32px,5vw,56px);padding-block:var(--s6) var(--s5);}
+  .hero::before{content:"";position:absolute;inset:-140px -30vw auto;height:560px;pointer-events:none;z-index:-1;
+    background:radial-gradient(600px 320px at 22% 30%,rgba(251,215,55,.09),transparent 65%),
+               radial-gradient(520px 300px at 78% 65%,rgba(156,111,254,.07),transparent 65%);}
   .hero-copy{flex:1.15;min-width:0;}
   .eyebrow{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-    color:var(--beam);background:rgba(251,215,55,.1);border:1px solid rgba(251,215,55,.25);border-radius:999px;padding:5px 13px;margin-bottom:18px;}
-  h1{font-size:clamp(34px,5.4vw,58px);font-weight:800;letter-spacing:-.03em;line-height:1.06;}
+    color:var(--beam);background:rgba(251,215,55,.1);border:1px solid rgba(251,215,55,.25);border-radius:999px;
+    padding:5px 13px;margin-bottom:20px;}
+  h1{font-size:clamp(36px,5.4vw,58px);font-weight:800;letter-spacing:-.03em;line-height:1.06;}
   h1 em{font-style:normal;color:var(--beam);}
-  .lede{color:var(--muted);font-size:clamp(16px,2vw,19px);margin:18px 0 28px;max-width:34em;}
-  .cta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-  .cta{display:inline-flex;align-items:center;gap:9px;background:var(--beam);color:#141414;font-weight:800;
-    font-size:16px;padding:14px 26px;border-radius:14px;}
-  .cta:hover{filter:brightness(1.07);}
+  .lede{color:var(--muted);font-size:clamp(16px,2vw,19px);margin:20px 0 30px;max-width:33em;}
+  .cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .cta{font-size:16px;padding:15px 28px;border-radius:14px;}
   .cta-soft{color:var(--muted);font-size:13.5px;font-family:ui-monospace,monospace;}
   .hero-shot{flex:.85;display:flex;justify-content:center;min-width:0;}
-  .phone{width:min(290px,72vw);border-radius:36px;border:1px solid var(--line);
-    box-shadow:0 30px 70px rgba(0,0,0,.55), 0 0 0 8px rgba(251,215,55,.05);
+  .phone-wrap{animation:float 7s ease-in-out infinite;}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  .phone{display:block;width:min(300px,70vw);height:auto;border-radius:38px;border:1px solid var(--line);
+    box-shadow:0 34px 80px rgba(0,0,0,.55),0 0 0 9px rgba(251,215,55,.05);
     transform:rotate(2.5deg);}
 
   /* Sections */
-  section{padding:56px 0;}
-  .sec-head{max-width:640px;margin-bottom:36px;}
-  h2{font-size:clamp(24px,3.4vw,34px);font-weight:800;letter-spacing:-.02em;line-height:1.15;}
-  .sec-head p{color:var(--muted);margin-top:10px;font-size:16.5px;}
+  section{padding-block:var(--s5);}
+  .sec-head{max-width:640px;margin-bottom:var(--s4);}
+  h2{font-size:clamp(26px,3.4vw,34px);font-weight:800;letter-spacing:-.02em;line-height:1.15;}
+  .sec-head p{color:var(--muted);margin-top:12px;font-size:16.5px;max-width:36em;}
 
   /* Feature grid */
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;}
-  .card .ico{font-size:26px;line-height:1;}
-  .card h3{font-size:16.5px;font-weight:700;margin:12px 0 6px;}
-  .card p{color:var(--muted);font-size:14.5px;line-height:1.55;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;
+    transition:transform .35s var(--ease),border-color .35s,box-shadow .35s var(--ease);}
+  .card:hover{transform:translateY(-4px);border-color:rgba(251,215,55,.35);box-shadow:0 16px 40px rgba(0,0,0,.35);}
+  .card .ico{font-size:27px;line-height:1;}
+  .card h3{font-size:16.5px;font-weight:700;margin:14px 0 7px;}
+  .card p{color:var(--muted);font-size:14.5px;line-height:1.6;}
 
   /* Showcase */
-  .shots{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;}
-  .shot{width:min(240px,80vw);text-align:center;}
-  .shot img{width:100%;border-radius:28px;border:1px solid var(--line);box-shadow:0 18px 44px rgba(0,0,0,.5);}
-  .shot figcaption{color:var(--muted);font-size:13px;margin-top:12px;font-family:ui-monospace,monospace;}
+  .shots{display:flex;gap:clamp(18px,3vw,28px);justify-content:center;}
+  .shot{width:min(250px,72vw);flex:none;text-align:center;}
+  .shot img{width:100%;height:auto;border-radius:30px;border:1px solid var(--line);box-shadow:0 20px 50px rgba(0,0,0,.5);
+    transition:transform .4s var(--ease);}
+  .shot:hover img{transform:translateY(-6px) scale(1.015);}
+  .shot figcaption{color:var(--muted);font-size:13px;margin-top:14px;font-family:ui-monospace,monospace;}
+  @media (max-width:820px){
+    .shots{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;
+      padding:6px 20px 18px;margin-inline:-20px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+    .shots::-webkit-scrollbar{display:none;}
+    .shot{scroll-snap-align:center;}
+  }
 
   /* Community */
-  .comm{background:linear-gradient(180deg,var(--surface),var(--bg));border:1px solid var(--line);border-radius:24px;
-    padding:44px 28px;text-align:center;}
-  .comm p{color:var(--muted);max-width:36em;margin:10px auto 24px;}
+  .comm{background:linear-gradient(180deg,var(--surface),var(--bg));border:1px solid var(--line);border-radius:26px;
+    padding:clamp(36px,6vw,52px) clamp(22px,4vw,36px);text-align:center;}
+  .comm p{color:var(--muted);max-width:36em;margin:12px auto 26px;}
   .comm-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
   .ghost{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);
-    color:var(--text);font-weight:600;font-size:14.5px;padding:11px 20px;border-radius:999px;}
-  .ghost:hover{border-color:var(--beam);color:var(--beam);}
+    color:var(--text);font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:999px;
+    transition:transform .25s var(--ease),border-color .25s,color .25s;}
+  .ghost:hover{transform:translateY(-2px);border-color:var(--beam);color:var(--beam);}
 
   /* Final CTA */
-  .final{text-align:center;padding:72px 0 84px;}
-  .final .cta{margin-top:24px;}
+  .final{text-align:center;padding-block:var(--s6);}
+  .final .cta{margin-top:26px;}
 
-  footer{border-top:1px solid var(--line);padding:26px 24px 34px;text-align:center;color:var(--muted);font-size:13px;}
-  footer a{margin:0 9px;color:var(--muted);}
+  footer{border-top:1px solid var(--line);padding:28px 24px 38px;text-align:center;color:var(--muted);font-size:13px;}
+  footer a{margin:0 9px;color:var(--muted);transition:color .2s;}
   footer a:hover{color:var(--beam);}
-  .tmdb{margin-top:10px;font-size:11.5px;opacity:.75;}
+  .tmdb{margin-top:12px;font-size:11.5px;opacity:.75;}
 
   @media (max-width:820px){
-    .hero{flex-direction:column-reverse;gap:36px;padding-top:44px;text-align:center;}
+    .hero{flex-direction:column-reverse;gap:40px;padding-block:var(--s4) var(--s4);text-align:center;}
+    .hero-copy{width:100%;}
     .lede{margin-inline:auto;}
     .cta-row{justify-content:center;}
-    .phone{transform:none;}
+    .cta{width:100%;max-width:360px;}
+    .phone{transform:none;width:min(250px,64vw);}
+    section{padding-block:var(--s4);}
+    .sec-head{margin-bottom:var(--s3);}
   }
 </style>
 </head>
 <body>
 
-<nav><div class="wrap nav-in">
+<nav id="nav"><div class="wrap nav-in">
   <span class="brand"><img src="assets/icon-192.png" alt="">Stay Tuned</span>
-  <a class="nav-cta" href="https://apps.apple.com/app/id6792608115">Get the app</a>
+  <a class="btn nav-cta" href="https://apps.apple.com/app/id6792608115">Get the app</a>
 </div></nav>
 
 <header class="wrap hero">
   <div class="hero-copy">
-    <span class="eyebrow">Built for the TV Time diaspora</span>
-    <h1>Track everything <em>you watch.</em></h1>
-    <p class="lede">Every episode, every movie, every hot take — in one place. Stay Tuned pairs serious tracking with a real community: clubs, threaded discussions and recommendations that actually get your taste.</p>
-    <div class="cta-row">
-      <a class="cta" href="https://apps.apple.com/app/id6792608115"> Download on the App&nbsp;Store</a>
+    <span class="eyebrow rv">Built for the TV Time diaspora</span>
+    <h1 class="rv" style="--d:60ms">Track everything <em>you watch.</em></h1>
+    <p class="lede rv" style="--d:120ms">Every episode, every movie, every hot take — in one place. Stay Tuned pairs serious tracking with a real community: clubs, threaded discussions and recommendations that actually get your taste.</p>
+    <div class="cta-row rv" style="--d:180ms">
+      <a class="btn cta" href="https://apps.apple.com/app/id6792608115"> Download on the App&nbsp;Store</a>
       <span class="cta-soft">Android — in testing, coming soon</span>
     </div>
   </div>
-  <div class="hero-shot"><img class="phone" src="assets/01_home.png" alt="Stay Tuned home screen"></div>
+  <div class="hero-shot rv" style="--d:140ms"><div class="phone-wrap"><img class="phone" src="assets/01_home.png" alt="Stay Tuned home screen" width="690" height="1500"></div></div>
 </header>
 
 <section class="wrap" id="features">
-  <div class="sec-head">
+  <div class="sec-head rv">
     <h2>Everything your old tracker did.<br>Then everything it didn't.</h2>
     <p>Import your history in two minutes and pick up exactly where you left off — then discover what a tracker feels like with a community inside.</p>
   </div>
   <div class="grid">
-    <div class="card"><div class="ico">📺</div><h3>Episode-by-episode tracking</h3><p>Check off episodes, binge whole seasons in a tap, and always know what's next with your Up Next queue.</p></div>
-    <div class="card"><div class="ico">📦</div><h3>Your TV Time history, rescued</h3><p>One-tap import from TV Time or Trakt. Years of watch history, ratings and lists — nothing gets left behind.</p></div>
-    <div class="card"><div class="ico">✨</div><h3>"What to watch tonight?"</h3><p>Tell it your mood and how much time you have — get one perfect pick with a personal reason, powered by your taste profile.</p></div>
-    <div class="card"><div class="ico">🏟️</div><h3>Clubs</h3><p>Start a public or private club around any show. Founders run the place: covers, members, moderation — your community, your rules.</p></div>
-    <div class="card"><div class="ico">💬</div><h3>Discussions that feel alive</h3><p>Threaded replies, six emoji reactions, photo attachments, spoiler covers and @mentions — episode talk the way it should be.</p></div>
-    <div class="card"><div class="ico">📊</div><h3>Stats, badges &amp; Rewind</h3><p>Watch-time stats, community charts, badges to earn, and a yearly Rewind that tells the story of your TV year.</p></div>
+    <div class="card rv"><div class="ico">📺</div><h3>Episode-by-episode tracking</h3><p>Check off episodes, binge whole seasons in a tap, and always know what's next with your Up Next queue.</p></div>
+    <div class="card rv" style="--d:70ms"><div class="ico">📦</div><h3>Your TV Time history, rescued</h3><p>One-tap import from TV Time or Trakt. Years of watch history, ratings and lists — nothing gets left behind.</p></div>
+    <div class="card rv" style="--d:140ms"><div class="ico">✨</div><h3>"What to watch tonight?"</h3><p>Tell it your mood and how much time you have — get one perfect pick with a personal reason, powered by your taste profile.</p></div>
+    <div class="card rv"><div class="ico">🏟️</div><h3>Clubs</h3><p>Start a public or private club around any show. Founders run the place: covers, members, moderation — your community, your rules.</p></div>
+    <div class="card rv" style="--d:70ms"><div class="ico">💬</div><h3>Discussions that feel alive</h3><p>Threaded replies, six emoji reactions, photo attachments, spoiler covers and @mentions — episode talk the way it should be.</p></div>
+    <div class="card rv" style="--d:140ms"><div class="ico">📊</div><h3>Stats, badges &amp; Rewind</h3><p>Watch-time stats, community charts, badges to earn, and a yearly Rewind that tells the story of your TV year.</p></div>
   </div>
 </section>
 
 <section class="wrap" id="showcase">
-  <div class="sec-head"><h2>Designed to feel premium.</h2>
+  <div class="sec-head rv"><h2>Designed to feel premium.</h2>
     <p>Fast, warm and detail-obsessed — from double-tap hearts to the yellow progress bars you already miss.</p></div>
   <div class="shots">
-    <figure class="shot"><img src="assets/03_show_detail.png" alt="Show page" loading="lazy"><figcaption>Seasons, cast &amp; where to watch</figcaption></figure>
-    <figure class="shot"><img src="assets/04_explore_feed.png" alt="Social feed" loading="lazy"><figcaption>See what friends are watching</figcaption></figure>
-    <figure class="shot"><img src="assets/06_profile.png" alt="Profile" loading="lazy"><figcaption>Your shows, stats &amp; badges</figcaption></figure>
+    <figure class="shot rv"><img src="assets/03_show_detail.png" alt="Show page" loading="lazy" width="690" height="1500"><figcaption>Seasons, cast &amp; where to watch</figcaption></figure>
+    <figure class="shot rv" style="--d:90ms"><img src="assets/04_explore_feed.png" alt="Social feed" loading="lazy" width="690" height="1500"><figcaption>See what friends are watching</figcaption></figure>
+    <figure class="shot rv" style="--d:180ms"><img src="assets/06_profile.png" alt="Profile" loading="lazy" width="690" height="1500"><figcaption>Your shows, stats &amp; badges</figcaption></figure>
   </div>
 </section>
 
 <section class="wrap">
-  <div class="comm">
+  <div class="comm rv">
     <h2>Join the community</h2>
     <p>Feature requests ship in days, not quarters. Tell us what to build next, report bugs, or just argue about season finales.</p>
     <div class="comm-row">
@@ -150,8 +189,8 @@
 </section>
 
 <section class="wrap final">
-  <h2>Your shows deserve a better home.</h2>
-  <a class="cta" href="https://apps.apple.com/app/id6792608115"> Download on the App&nbsp;Store</a>
+  <h2 class="rv">Your shows deserve a better home.</h2>
+  <a class="btn cta rv" style="--d:100ms" href="https://apps.apple.com/app/id6792608115"> Download on the App&nbsp;Store</a>
 </section>
 
 <footer>
@@ -164,5 +203,32 @@
   <div class="tmdb">This product uses the TMDB API but is not endorsed or certified by TMDB.</div>
 </footer>
 
+<noscript><style>.rv{opacity:1;transform:none}</style></noscript>
+<script>
+  // Kaydırma reveal'ları — bir kez tetiklenir, reduced-motion'da CSS devre dışı bırakır
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.rv').forEach((el) => {
+    // İlk ekranda zaten görünür olanlar beklemeden açılır (stagger'ı --d verir)
+    if (el.getBoundingClientRect().top < innerHeight * 1.05) el.classList.add('in');
+    else io.observe(el);
+  });
+
+  // Yedek: IO tetiklenmeyen ortamlarda scroll/resize ile aç (asla boş sayfa kalmasın)
+  function sweep() {
+    document.querySelectorAll('.rv:not(.in)').forEach((el) => {
+      if (el.getBoundingClientRect().top < innerHeight * 1.05) el.classList.add('in');
+    });
+  }
+  // Nav: kaydırınca ince gölge/çizgi
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', scrollY > 8);
+    sweep();
+  }, { passive: true });
+  addEventListener('resize', sweep, { passive: true });
+  addEventListener('load', sweep);
+</script>
 </body>
 </html>
