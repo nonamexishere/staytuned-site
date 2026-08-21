@@ -135,6 +135,7 @@
 
 <nav id="nav"><div class="wrap nav-in">
   <span class="brand"><img src="assets/icon-192.png" alt="">Stay Tuned</span>
+  <a class="ghost nav-cta" href="/login">Open in browser</a>
   <a class="btn nav-cta" href="https://apps.apple.com/app/id6792608115">Get the app</a>
 </div></nav>
 
@@ -232,6 +233,16 @@
   }, { passive: true });
   addEventListener('resize', sweep, { passive: true });
   addEventListener('load', sweep);
+
+  // Oturum varsa pazarlama yerine uygulamaya al (/home 404 → SPA)
+  try {
+    var loggedIn = Object.keys(localStorage).some(function (k) {
+      if (k.indexOf('sb-') !== 0 || k.indexOf('-auth-token') === -1) return false;
+      var v = localStorage.getItem(k) || '';
+      return v.indexOf('access_token') !== -1;
+    });
+    if (loggedIn) location.replace('/home');
+  } catch (e) {}
 </script>
 </body>
 </html>

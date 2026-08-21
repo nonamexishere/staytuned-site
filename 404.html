@@ -1,21 +1,40 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Stay Tuned</title>
-<script>
-(function () {
-  var m = location.pathname.match(/^\/g\/([0-9a-f-]{36})\/?$/i);
-  if (m) {
-    location.replace('/g/?id=' + encodeURIComponent(m[1]));
-    return;
-  }
-})();
-</script>
-</head>
-<body style="font-family:-apple-system,sans-serif;background:#0d0e12;color:#eceae2;padding:48px 20px;text-align:center">
-  <p>Page not found.</p>
-  <p><a href="/" style="color:#FBD737">Back to Stay Tuned</a></p>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Stay Tuned</title>
+    <script>
+      (function () {
+        var m = location.pathname.match(/^\/g\/([0-9a-f-]{36})\/?$/i);
+        if (m) {
+          location.replace('/g/?id=' + encodeURIComponent(m[1]));
+          return;
+        }
+      })();
+    </script>
+    <style id="expo-reset">
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        overflow: hidden;
+      }
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+    </style>
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preload" href="/_expo/static/css/web-f6c21ddf8d9713a4bbd9827785165bc3.css" as="style" />
+    <link rel="stylesheet" href="/_expo/static/css/web-f6c21ddf8d9713a4bbd9827785165bc3.css" />
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script src="/_expo/static/js/web/entry-ff5f5a6d38a533a969b38387ef069987.js" defer></script>
+  </body>
 </html>
