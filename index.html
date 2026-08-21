@@ -25,7 +25,6 @@
   .wrap{max-width:1080px;margin:0 auto;padding-inline:clamp(20px,4vw,32px);}
   h1,h2,h3{text-wrap:balance;}
 
-  /* Reveal-on-scroll */
   .rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0ms);}
   .rv.in{opacity:1;transform:none;}
   @media (prefers-reduced-motion:reduce){
@@ -34,22 +33,23 @@
     html{scroll-behavior:auto;}
   }
 
-  /* Nav */
   nav{position:sticky;top:0;z-index:10;background:rgba(13,14,18,.82);backdrop-filter:blur(14px);
     border-bottom:1px solid transparent;transition:border-color .4s,box-shadow .4s;}
   nav.scrolled{border-color:var(--line);box-shadow:0 8px 30px rgba(0,0,0,.35);}
-  .nav-in{display:flex;align-items:center;justify-content:space-between;padding-block:14px;}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px;}
   .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:var(--beam);letter-spacing:-.02em;}
   .brand img{width:28px;height:28px;border-radius:7px;}
+  .nav-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--beam);color:#141414;
-    font-weight:800;border-radius:999px;transition:transform .25s var(--ease),box-shadow .25s var(--ease),filter .2s;
-    will-change:transform;}
+    font-weight:800;border-radius:999px;transition:transform .25s var(--ease),box-shadow .25s var(--ease),filter .2s;}
   .btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(251,215,55,.22);filter:brightness(1.05);}
   .btn:active{transform:translateY(0);}
   .btn:focus-visible{outline:2px solid var(--beam);outline-offset:3px;}
   .nav-cta{font-size:14px;padding:9px 18px;}
+  .toggle{display:flex;gap:2px;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .toggle button{font:inherit;border:0;background:transparent;color:var(--muted);padding:6px 10px;cursor:pointer;font-size:12px;font-weight:700;}
+  .toggle button[aria-pressed="true"]{background:var(--beam);color:#141414;}
 
-  /* Hero */
   .hero{position:relative;display:flex;align-items:center;gap:clamp(32px,5vw,56px);padding-block:var(--s6) var(--s5);}
   .hero::before{content:"";position:absolute;inset:-140px -30vw auto;height:560px;pointer-events:none;z-index:-1;
     background:radial-gradient(600px 320px at 22% 30%,rgba(251,215,55,.09),transparent 65%),
@@ -61,9 +61,8 @@
   h1{font-size:clamp(36px,5.4vw,58px);font-weight:800;letter-spacing:-.03em;line-height:1.06;}
   h1 em{font-style:normal;color:var(--beam);}
   .lede{color:var(--muted);font-size:clamp(16px,2vw,19px);margin:20px 0 30px;max-width:33em;}
-  .cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .cta-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
   .cta{font-size:16px;padding:15px 28px;border-radius:14px;}
-  .cta-soft{color:var(--muted);font-size:13.5px;font-family:ui-monospace,monospace;}
   .hero-shot{flex:.85;display:flex;justify-content:center;min-width:0;}
   .phone-wrap{animation:float 7s ease-in-out infinite;}
   @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
@@ -71,13 +70,11 @@
     box-shadow:0 34px 80px rgba(0,0,0,.55),0 0 0 9px rgba(251,215,55,.05);
     transform:rotate(2.5deg);}
 
-  /* Sections */
   section{padding-block:var(--s5);}
   .sec-head{max-width:640px;margin-bottom:var(--s4);}
   h2{font-size:clamp(26px,3.4vw,34px);font-weight:800;letter-spacing:-.02em;line-height:1.15;}
   .sec-head p{color:var(--muted);margin-top:12px;font-size:16.5px;max-width:36em;}
 
-  /* Feature grid */
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;}
   .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;
     transition:transform .35s var(--ease),border-color .35s,box-shadow .35s var(--ease);}
@@ -86,7 +83,6 @@
   .card h3{font-size:16.5px;font-weight:700;margin:14px 0 7px;}
   .card p{color:var(--muted);font-size:14.5px;line-height:1.6;}
 
-  /* Showcase */
   .shots{display:flex;gap:clamp(18px,3vw,28px);justify-content:center;}
   .shot{width:min(250px,72vw);flex:none;text-align:center;}
   .shot img{width:100%;height:auto;border-radius:30px;border:1px solid var(--line);box-shadow:0 20px 50px rgba(0,0,0,.5);
@@ -100,19 +96,18 @@
     .shot{scroll-snap-align:center;}
   }
 
-  /* Community */
   .comm{background:linear-gradient(180deg,var(--surface),var(--bg));border:1px solid var(--line);border-radius:26px;
     padding:clamp(36px,6vw,52px) clamp(22px,4vw,36px);text-align:center;}
   .comm p{color:var(--muted);max-width:36em;margin:12px auto 26px;}
   .comm-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-  .ghost{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);
+  .ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:var(--card);
     color:var(--text);font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:999px;
     transition:transform .25s var(--ease),border-color .25s,color .25s;}
   .ghost:hover{transform:translateY(-2px);border-color:var(--beam);color:var(--beam);}
 
-  /* Final CTA */
   .final{text-align:center;padding-block:var(--s6);}
-  .final .cta{margin-top:26px;}
+  .final .cta-row{justify-content:center;}
+  .final .cta{margin-top:0;}
 
   footer{border-top:1px solid var(--line);padding:28px 24px 38px;text-align:center;color:var(--muted);font-size:13px;}
   footer a{margin:0 9px;color:var(--muted);transition:color .2s;}
@@ -128,25 +123,33 @@
     .phone{transform:none;width:min(250px,64vw);}
     section{padding-block:var(--s4);}
     .sec-head{margin-bottom:var(--s3);}
+    .nav-cta.ghost{display:none;}
   }
 </style>
 </head>
 <body>
 
 <nav id="nav"><div class="wrap nav-in">
-  <span class="brand"><img src="assets/icon-192.png" alt="">Stay Tuned</span>
-  <a class="ghost nav-cta" href="/login">Open in browser</a>
-  <a class="btn nav-cta" href="https://apps.apple.com/app/id6792608115">Get the app</a>
+  <a class="brand" href="/"><img src="assets/icon-192.png" alt="">Stay Tuned</a>
+  <div class="nav-actions">
+    <div class="toggle" role="group" aria-label="Language">
+      <button type="button" id="btn-en" aria-pressed="true" onclick="setLang('en')">EN</button>
+      <button type="button" id="btn-tr" aria-pressed="false" onclick="setLang('tr')">TR</button>
+    </div>
+    <a class="ghost nav-cta" href="/login" data-i="navWeb">Open in browser</a>
+    <a class="btn nav-cta" id="nav-app" href="https://apps.apple.com/app/id6792608115" data-i="navApp">Get the app</a>
+  </div>
 </div></nav>
 
 <header class="wrap hero">
   <div class="hero-copy">
-    <span class="eyebrow rv">Built for the TV Time diaspora</span>
-    <h1 class="rv" style="--d:60ms">Track everything <em>you watch.</em></h1>
-    <p class="lede rv" style="--d:120ms">Every episode, every movie, every hot take — in one place. Stay Tuned pairs serious tracking with a real community: clubs, threaded discussions and recommendations that actually get your taste.</p>
+    <span class="eyebrow rv" data-i="eyebrow">Built for the TV Time diaspora</span>
+    <h1 class="rv" style="--d:60ms" data-i-html="h1">Track everything <em>you watch.</em></h1>
+    <p class="lede rv" style="--d:120ms" data-i="lede">Every episode, every movie, every hot take — in one place. Stay Tuned pairs serious tracking with a real community: clubs, threaded discussions and recommendations that actually get your taste.</p>
     <div class="cta-row rv" style="--d:180ms">
-      <a class="btn cta" href="https://apps.apple.com/app/id6792608115">Download on the App&nbsp;Store</a>
-      <a class="ghost" href="https://play.google.com/store/apps/details?id=app.getstaytuned">Get it on Google&nbsp;Play</a>
+      <a class="btn cta" href="/login" data-i="ctaWeb">Open in browser</a>
+      <a class="ghost" href="https://apps.apple.com/app/id6792608115" data-i="ctaIos">App Store</a>
+      <a class="ghost" href="https://play.google.com/store/apps/details?id=app.getstaytuned" data-i="ctaPlay">Google Play</a>
     </div>
   </div>
   <div class="hero-shot rv" style="--d:140ms"><div class="phone-wrap"><img class="phone" src="assets/01_home.png" alt="Stay Tuned home screen" width="690" height="1500"></div></div>
@@ -154,33 +157,33 @@
 
 <section class="wrap" id="features">
   <div class="sec-head rv">
-    <h2>Everything your old tracker did.<br>Then everything it didn't.</h2>
-    <p>Import your history in two minutes and pick up exactly where you left off — then discover what a tracker feels like with a community inside.</p>
+    <h2 data-i-html="featTitle">Everything your old tracker did.<br>Then everything it didn't.</h2>
+    <p data-i="featLede">Import your history in two minutes and pick up exactly where you left off — then discover what a tracker feels like with a community inside.</p>
   </div>
   <div class="grid">
-    <div class="card rv"><div class="ico">📺</div><h3>Episode-by-episode tracking</h3><p>Check off episodes, binge whole seasons in a tap, and always know what's next with your Up Next queue.</p></div>
-    <div class="card rv" style="--d:70ms"><div class="ico">📦</div><h3>Your TV Time history, rescued</h3><p>One-tap import from TV Time or Trakt. Years of watch history, ratings and lists — nothing gets left behind.</p></div>
-    <div class="card rv" style="--d:140ms"><div class="ico">📅</div><h3>Release calendar</h3><p>Upcoming episodes on the days they air — so you never miss a premiere or a season return.</p></div>
-    <div class="card rv"><div class="ico">🏟️</div><h3>Clubs</h3><p>Start a public or private club around any show. Founders run the place: covers, members, moderation — your community, your rules.</p></div>
-    <div class="card rv" style="--d:70ms"><div class="ico">💬</div><h3>Discussions that feel alive</h3><p>Threaded replies, six emoji reactions, photo attachments, spoiler covers and @mentions — episode talk the way it should be.</p></div>
-    <div class="card rv" style="--d:140ms"><div class="ico">📊</div><h3>Stats, badges &amp; Rewind</h3><p>Watch-time stats, community charts, badges to earn, and a yearly Rewind that tells the story of your TV year.</p></div>
+    <div class="card rv"><div class="ico">📺</div><h3 data-i="c1t">Episode-by-episode tracking</h3><p data-i="c1p">Check off episodes, binge whole seasons in a tap, and always know what's next with your Up Next queue.</p></div>
+    <div class="card rv" style="--d:70ms"><div class="ico">📦</div><h3 data-i="c2t">Your TV Time history, rescued</h3><p data-i="c2p">One-tap import from TV Time or Trakt. Years of watch history, ratings and lists — nothing gets left behind.</p></div>
+    <div class="card rv" style="--d:140ms"><div class="ico">📅</div><h3 data-i="c3t">Release calendar</h3><p data-i="c3p">Upcoming episodes on the days they air — so you never miss a premiere or a season return.</p></div>
+    <div class="card rv"><div class="ico">🏟️</div><h3 data-i="c4t">Clubs</h3><p data-i="c4p">Start a public or private club around any show. Founders run the place: covers, members, moderation — your community, your rules.</p></div>
+    <div class="card rv" style="--d:70ms"><div class="ico">💬</div><h3 data-i="c5t">Discussions that feel alive</h3><p data-i="c5p">Threaded replies, six emoji reactions, photo attachments, spoiler covers and @mentions — episode talk the way it should be.</p></div>
+    <div class="card rv" style="--d:140ms"><div class="ico">📊</div><h3 data-i="c6t">Stats, badges &amp; Rewind</h3><p data-i="c6p">Watch-time stats, community charts, badges to earn, and a yearly Rewind that tells the story of your TV year.</p></div>
   </div>
 </section>
 
 <section class="wrap" id="showcase">
-  <div class="sec-head rv"><h2>Designed to feel premium.</h2>
-    <p>Fast, warm and detail-obsessed — from double-tap hearts to the yellow progress bars you already miss.</p></div>
+  <div class="sec-head rv"><h2 data-i="showTitle">Designed to feel premium.</h2>
+    <p data-i="showLede">Fast, warm and detail-obsessed — from double-tap hearts to the yellow progress bars you already miss.</p></div>
   <div class="shots">
-    <figure class="shot rv"><img src="assets/03_show_detail.png" alt="Show page" loading="lazy" width="690" height="1500"><figcaption>Seasons, cast &amp; where to watch</figcaption></figure>
-    <figure class="shot rv" style="--d:90ms"><img src="assets/04_explore_feed.png" alt="Social feed" loading="lazy" width="690" height="1500"><figcaption>See what friends are watching</figcaption></figure>
-    <figure class="shot rv" style="--d:180ms"><img src="assets/06_profile.png" alt="Profile" loading="lazy" width="690" height="1500"><figcaption>Your shows, stats &amp; badges</figcaption></figure>
+    <figure class="shot rv"><img src="assets/03_show_detail.png" alt="Show page" loading="lazy" width="690" height="1500"><figcaption data-i="cap1">Seasons, cast &amp; where to watch</figcaption></figure>
+    <figure class="shot rv" style="--d:90ms"><img src="assets/04_explore_feed.png" alt="Social feed" loading="lazy" width="690" height="1500"><figcaption data-i="cap2">See what friends are watching</figcaption></figure>
+    <figure class="shot rv" style="--d:180ms"><img src="assets/06_profile.png" alt="Profile" loading="lazy" width="690" height="1500"><figcaption data-i="cap3">Your shows, stats &amp; badges</figcaption></figure>
   </div>
 </section>
 
 <section class="wrap">
   <div class="comm rv">
-    <h2>Join the community</h2>
-    <p>Feature requests ship in days, not quarters. Tell us what to build next, report bugs, or just argue about season finales.</p>
+    <h2 data-i="commTitle">Join the community</h2>
+    <p data-i="commLede">Feature requests ship in days, not quarters. Tell us what to build next, report bugs, or just argue about season finales.</p>
     <div class="comm-row">
       <a class="ghost" href="https://www.reddit.com/r/StayTunedApp">r/StayTunedApp</a>
       <a class="ghost" href="https://x.com/getstaytuned">@getstaytuned on X</a>
@@ -190,42 +193,148 @@
 </section>
 
 <section class="wrap final">
-  <h2 class="rv">Your shows deserve a better home.</h2>
-  <div class="cta-row rv" style="--d:100ms">
-    <a class="btn cta" href="https://apps.apple.com/app/id6792608115">Download on the App&nbsp;Store</a>
-    <a class="ghost" href="https://play.google.com/store/apps/details?id=app.getstaytuned">Get it on Google&nbsp;Play</a>
+  <h2 class="rv" data-i="finalTitle">Your shows deserve a better home.</h2>
+  <div class="cta-row rv" style="--d:100ms;margin-top:26px">
+    <a class="btn cta" href="/login" data-i="ctaWeb">Open in browser</a>
+    <a class="ghost" href="https://apps.apple.com/app/id6792608115" data-i="ctaIos">App Store</a>
+    <a class="ghost" href="https://play.google.com/store/apps/details?id=app.getstaytuned" data-i="ctaPlay">Google Play</a>
   </div>
 </section>
 
 <footer>
   <div>
-    <a href="/privacy/">Privacy</a>
-    <a href="/terms/">Terms</a>
+    <a href="/login" data-i="navWeb">Open in browser</a>
+    <a href="/privacy/" data-i="privacy">Privacy</a>
+    <a href="/terms/" data-i="terms">Terms</a>
     <a href="https://www.reddit.com/r/StayTunedApp">Reddit</a>
     <a href="https://x.com/getstaytuned">X</a>
   </div>
-  <div class="tmdb">This product uses the TMDB API but is not endorsed or certified by TMDB.</div>
+  <div class="tmdb" data-i="tmdb">This product uses the TMDB API but is not endorsed or certified by TMDB.</div>
 </footer>
 
 <noscript><style>.rv{opacity:1;transform:none}</style></noscript>
 <script>
-  // Kaydırma reveal'ları — bir kez tetiklenir, reduced-motion'da CSS devre dışı bırakır
+  var I18N = {
+    en: {
+      title: 'Stay Tuned — Track everything you watch',
+      desc: 'The TV & movie tracker with a real community. Episode tracking, personal recommendations, clubs and discussions — built for the TV Time diaspora.',
+      navWeb: 'Open in browser',
+      navApp: 'Get the app',
+      eyebrow: 'Built for the TV Time diaspora',
+      h1: 'Track everything <em>you watch.</em>',
+      lede: 'Every episode, every movie, every hot take — in one place. Stay Tuned pairs serious tracking with a real community: clubs, threaded discussions and recommendations that actually get your taste.',
+      ctaWeb: 'Open in browser',
+      ctaIos: 'App Store',
+      ctaPlay: 'Google Play',
+      featTitle: 'Everything your old tracker did.<br>Then everything it didn\'t.',
+      featLede: 'Import your history in two minutes and pick up exactly where you left off — then discover what a tracker feels like with a community inside.',
+      c1t: 'Episode-by-episode tracking',
+      c1p: 'Check off episodes, binge whole seasons in a tap, and always know what\'s next with your Up Next queue.',
+      c2t: 'Your TV Time history, rescued',
+      c2p: 'One-tap import from TV Time or Trakt. Years of watch history, ratings and lists — nothing gets left behind.',
+      c3t: 'Release calendar',
+      c3p: 'Upcoming episodes on the days they air — so you never miss a premiere or a season return.',
+      c4t: 'Clubs',
+      c4p: 'Start a public or private club around any show. Founders run the place: covers, members, moderation — your community, your rules.',
+      c5t: 'Discussions that feel alive',
+      c5p: 'Threaded replies, six emoji reactions, photo attachments, spoiler covers and @mentions — episode talk the way it should be.',
+      c6t: 'Stats, badges & Rewind',
+      c6p: 'Watch-time stats, community charts, badges to earn, and a yearly Rewind that tells the story of your TV year.',
+      showTitle: 'Designed to feel premium.',
+      showLede: 'Fast, warm and detail-obsessed — from double-tap hearts to the yellow progress bars you already miss.',
+      cap1: 'Seasons, cast & where to watch',
+      cap2: 'See what friends are watching',
+      cap3: 'Your shows, stats & badges',
+      commTitle: 'Join the community',
+      commLede: 'Feature requests ship in days, not quarters. Tell us what to build next, report bugs, or just argue about season finales.',
+      finalTitle: 'Your shows deserve a better home.',
+      privacy: 'Privacy',
+      terms: 'Terms',
+      tmdb: 'This product uses the TMDB API but is not endorsed or certified by TMDB.'
+    },
+    tr: {
+      title: 'Stay Tuned — İzlediğin her şeyi takip et',
+      desc: 'Gerçek bir topluluğu olan dizi ve film takipçisi. Bölüm takibi, kişisel öneriler, kulüpler ve tartışmalar — TV Time\'dan gelenler için.',
+      navWeb: 'Tarayıcıda aç',
+      navApp: 'Uygulamayı indir',
+      eyebrow: 'TV Time\'dan gelenler için',
+      h1: 'İzlediğin her şeyi <em>takip et.</em>',
+      lede: 'Her bölüm, her film, her yorum — tek yerde. Stay Tuned ciddi takibi gerçek bir toplulukla birleştirir: kulüpler, başlıklı tartışmalar ve zevkini anlayan öneriler.',
+      ctaWeb: 'Tarayıcıda aç',
+      ctaIos: 'App Store',
+      ctaPlay: 'Google Play',
+      featTitle: 'Eski takipçinin yaptığının hepsi.<br>Sonra yapmadıklarının da.',
+      featLede: 'Geçmişini iki dakikada içe aktar, kaldığın yerden devam et — sonra bir takipçinin içinde topluluk olunca nasıl hissettirdiğini gör.',
+      c1t: 'Bölüm bölüm takip',
+      c1p: 'Bölümleri işaretle, sezonları tek dokunuşta bitir, Sıradaki kuyruğuyla her zaman neyin geldiğini bil.',
+      c2t: 'TV Time geçmişin burada',
+      c2p: 'TV Time veya Trakt\'tan tek dokunuşla aktar. Yılların izleme geçmişi, puanların ve listelerin — hiçbir şey geride kalmaz.',
+      c3t: 'Yayın takvimi',
+      c3p: 'Yaklaşan bölümler yayın gününde — premieri veya sezon dönüşünü kaçırma.',
+      c4t: 'Kulüpler',
+      c4p: 'Her dizi için açık veya kapalı kulüp aç. Kurucu yönetir: kapak, üyeler, moderasyon — senin topluluğun, senin kuralların.',
+      c5t: 'Canlı tartışmalar',
+      c5p: 'İç içe yanıtlar, altı emoji tepki, fotoğraf, spoiler örtüsü ve @bahsetmeler — bölüm sohbeti böyle olmalı.',
+      c6t: 'İstatistik, rozet ve Rewind',
+      c6p: 'İzleme süresi, topluluk sıralamaları, kazanılacak rozetler ve TV yılının hikâyesini anlatan Rewind.',
+      showTitle: 'Premium hissetsin diye.',
+      showLede: 'Hızlı, sıcak ve detay takıntılı — çift dokunuş kalplerinden özlediğin sarı ilerleme çubuklarına.',
+      cap1: 'Sezonlar, oyuncular ve nerede izlenir',
+      cap2: 'Arkadaşların ne izliyor',
+      cap3: 'Dizilerin, istatistiklerin ve rozetlerin',
+      commTitle: 'Topluluğa katıl',
+      commLede: 'İstekler çeyrekte değil, günlerde gelir. Sıradaki özelliği söyle, hata bildir veya finali tartış.',
+      finalTitle: 'Dizilerin daha iyi bir ev hak ediyor.',
+      privacy: 'Gizlilik',
+      terms: 'Koşullar',
+      tmdb: 'Bu ürün TMDB API kullanır ancak TMDB tarafından onaylanmış veya sertifikalandırılmış değildir.'
+    }
+  };
+
+  function setLang(l){
+    var pack = I18N[l] || I18N.en;
+    document.documentElement.lang = l;
+    document.title = pack.title;
+    var desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute('content', pack.desc);
+    document.querySelectorAll('[data-i]').forEach(function (el) {
+      var key = el.getAttribute('data-i');
+      if (pack[key]) el.textContent = pack[key];
+    });
+    document.querySelectorAll('[data-i-html]').forEach(function (el) {
+      var key = el.getAttribute('data-i-html');
+      if (pack[key]) el.innerHTML = pack[key];
+    });
+    document.getElementById('btn-en').setAttribute('aria-pressed', l === 'en');
+    document.getElementById('btn-tr').setAttribute('aria-pressed', l === 'tr');
+    try { localStorage.setItem('st-lang', l); } catch (e) {}
+  }
+
+  (function initLang(){
+    var saved = null;
+    try { saved = localStorage.getItem('st-lang'); } catch (e) {}
+    if (saved === 'tr' || saved === 'en') setLang(saved);
+    else if ((navigator.language || '').toLowerCase().startsWith('tr')) setLang('tr');
+  })();
+
+  var ios = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  var android = /Android/i.test(navigator.userAgent);
+  var navApp = document.getElementById('nav-app');
+  if (android && !ios) navApp.href = 'https://play.google.com/store/apps/details?id=app.getstaytuned';
+
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.rv').forEach((el) => {
-    // İlk ekranda zaten görünür olanlar beklemeden açılır (stagger'ı --d verir)
     if (el.getBoundingClientRect().top < innerHeight * 1.05) el.classList.add('in');
     else io.observe(el);
   });
 
-  // Yedek: IO tetiklenmeyen ortamlarda scroll/resize ile aç (asla boş sayfa kalmasın)
   function sweep() {
     document.querySelectorAll('.rv:not(.in)').forEach((el) => {
       if (el.getBoundingClientRect().top < innerHeight * 1.05) el.classList.add('in');
     });
   }
-  // Nav: kaydırınca ince gölge/çizgi
   const nav = document.getElementById('nav');
   addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', scrollY > 8);
@@ -234,7 +343,6 @@
   addEventListener('resize', sweep, { passive: true });
   addEventListener('load', sweep);
 
-  // Oturum varsa pazarlama yerine uygulamaya al (/home 404 → SPA)
   try {
     var loggedIn = Object.keys(localStorage).some(function (k) {
       if (k.indexOf('sb-') !== 0 || k.indexOf('-auth-token') === -1) return false;

@@ -9,7 +9,7 @@
 <meta property="og:description" content="Track shows together. Open in the app, or download Stay Tuned.">
 <meta property="og:image" content="https://getstaytuned.app/assets/icon-192.png">
 <style>
-  :root{--beam:#FBD737;--bg:#0d0e12;--text:#eceae2;--muted:#9a988c;--card:#191b23;}
+  :root{--beam:#FBD737;--bg:#0d0e12;--text:#eceae2;--muted:#9a988c;--card:#191b23;--line:#262832;}
   *{box-sizing:border-box;margin:0}
   body{min-height:100dvh;background:var(--bg);color:var(--text);
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
@@ -19,23 +19,35 @@
   h1{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;}
   p{color:var(--muted);font-size:15px;line-height:1.5;margin-bottom:28px;}
   .btn{display:block;width:100%;padding:14px 18px;border-radius:999px;font-weight:800;
-    font-size:15px;text-decoration:none;margin-bottom:10px;}
+    font-size:15px;text-decoration:none;margin-bottom:10px;border:0;cursor:pointer;
+    font-family:inherit;}
   .primary{background:var(--beam);color:#141414;}
-  .ghost{background:var(--card);color:var(--text);}
+  .ghost{background:var(--card);color:var(--text);border:1px solid var(--line);}
   .hint{margin-top:18px;font-size:12px;color:var(--muted);}
 </style>
 </head>
 <body>
   <div class="box">
     <img class="icon" src="/assets/icon-192.png" alt="Stay Tuned">
-    <h1>Join this club</h1>
-    <p>Open Stay Tuned if you already have it. If not, grab the app — then this link takes you to the club.</p>
-    <a class="btn primary" id="open" href="#">Open in Stay Tuned</a>
+    <h1 id="title">Join this club</h1>
+    <p id="lede">Open Stay Tuned if you already have it. If not, continue in the browser or grab the app.</p>
+    <a class="btn primary" id="web" href="/login">Continue in browser</a>
+    <a class="btn ghost" id="open" href="#">Open in Stay Tuned</a>
     <a class="btn ghost" id="store" href="https://apps.apple.com/app/id6792608115">Get the app</a>
     <p class="hint" id="bad" hidden>This invite link looks incomplete.</p>
   </div>
 <script>
 (function () {
+  var tr = (navigator.language || '').toLowerCase().startsWith('tr');
+  if (tr) {
+    document.documentElement.lang = 'tr';
+    document.title = 'Stay Tuned kulübüne katıl';
+    document.getElementById('title').textContent = 'Bu kulübe katıl';
+    document.getElementById('lede').textContent = 'Uygulaman varsa Stay Tuned\'u aç. Yoksa tarayıcıda devam et veya uygulamayı indir.';
+    document.getElementById('web').textContent = 'Tarayıcıda devam et';
+    document.getElementById('open').textContent = 'Stay Tuned\'da aç';
+    document.getElementById('bad').textContent = 'Bu davet bağlantısı eksik görünüyor.';
+  }
   var params = new URLSearchParams(location.search);
   var id = params.get('id');
   if (!id) {
@@ -48,12 +60,17 @@
   store.href = ios
     ? 'https://apps.apple.com/app/id6792608115'
     : 'https://play.google.com/store/apps/details?id=app.getstaytuned';
-  store.textContent = ios ? 'Get on the App Store' : 'Get on Google Play';
+  store.textContent = tr
+    ? (ios ? 'App Store\'dan al' : 'Google Play\'den al')
+    : (ios ? 'Get on the App Store' : 'Get on Google Play');
   if (!id) {
     document.getElementById('bad').hidden = false;
     document.getElementById('open').hidden = true;
+    document.getElementById('web').href = '/login';
     return;
   }
+  try { sessionStorage.setItem('staytuned-pending-group', id); } catch (e) {}
+  document.getElementById('web').href = '/login';
   var scheme = 'staytuned://group/' + encodeURIComponent(id);
   var open = document.getElementById('open');
   open.href = scheme;
