@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Join this club on Stay Tuned</title>
+<meta name="description" content="Open this club in Stay Tuned — or get the app on the App Store or Google Play.">
+<meta property="og:title" content="Join this club on Stay Tuned">
+<meta property="og:description" content="Track shows together. Open in the app, or download Stay Tuned.">
+<meta property="og:image" content="https://getstaytuned.app/assets/icon-192.png">
+<style>
+  :root{--beam:#FBD737;--bg:#0d0e12;--text:#eceae2;--muted:#9a988c;--card:#191b23;}
+  *{box-sizing:border-box;margin:0}
+  body{min-height:100dvh;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    display:flex;align-items:center;justify-content:center;padding:32px 20px;}
+  .box{max-width:400px;width:100%;text-align:center;}
+  img.icon{width:72px;height:72px;border-radius:18px;margin-bottom:20px;}
+  h1{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;}
+  p{color:var(--muted);font-size:15px;line-height:1.5;margin-bottom:28px;}
+  .btn{display:block;width:100%;padding:14px 18px;border-radius:999px;font-weight:800;
+    font-size:15px;text-decoration:none;margin-bottom:10px;}
+  .primary{background:var(--beam);color:#141414;}
+  .ghost{background:var(--card);color:var(--text);}
+  .hint{margin-top:18px;font-size:12px;color:var(--muted);}
+</style>
+</head>
+<body>
+  <div class="box">
+    <img class="icon" src="/assets/icon-192.png" alt="Stay Tuned">
+    <h1>Join this club</h1>
+    <p>Open Stay Tuned if you already have it. If not, grab the app — then this link takes you to the club.</p>
+    <a class="btn primary" id="open" href="#">Open in Stay Tuned</a>
+    <a class="btn ghost" id="store" href="https://apps.apple.com/app/id6792608115">Get the app</a>
+    <p class="hint" id="bad" hidden>This invite link looks incomplete.</p>
+  </div>
+<script>
+(function () {
+  var params = new URLSearchParams(location.search);
+  var id = params.get('id');
+  if (!id) {
+    var parts = location.pathname.replace(/\/+$/, '').split('/');
+    var last = parts[parts.length - 1];
+    if (last && last !== 'g') id = last;
+  }
+  var ios = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  var store = document.getElementById('store');
+  store.href = ios
+    ? 'https://apps.apple.com/app/id6792608115'
+    : 'https://play.google.com/store/apps/details?id=app.getstaytuned';
+  store.textContent = ios ? 'Get on the App Store' : 'Get on Google Play';
+  if (!id) {
+    document.getElementById('bad').hidden = false;
+    document.getElementById('open').hidden = true;
+    return;
+  }
+  var scheme = 'staytuned://group/' + encodeURIComponent(id);
+  var open = document.getElementById('open');
+  open.href = scheme;
+  open.addEventListener('click', function (e) {
+    e.preventDefault();
+    window.location = scheme;
+  });
+})();
+</script>
+</body>
+</html>

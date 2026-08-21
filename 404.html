@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stay Tuned</title>
+<script>
+(function () {
+  var m = location.pathname.match(/^\/g\/([0-9a-f-]{36})\/?$/i);
+  if (m) {
+    location.replace('/g/?id=' + encodeURIComponent(m[1]));
+    return;
+  }
+})();
+</script>
+</head>
+<body style="font-family:-apple-system,sans-serif;background:#0d0e12;color:#eceae2;padding:48px 20px;text-align:center">
+  <p>Page not found.</p>
+  <p><a href="/" style="color:#FBD737">Back to Stay Tuned</a></p>
+</body>
+</html>
